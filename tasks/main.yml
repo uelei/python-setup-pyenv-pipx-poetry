@@ -51,9 +51,17 @@
   ignore_errors: true
 
 - name: pipx linux
-  when: pipx_exists is failed
+  when: pipx_exists == False and ansible_os_family != "Darwin"
   ansible.builtin.pip:
     name: pipx
+
+- name: Install pyenv macos
+  become: true
+  become_user: '{{ user }}'
+  community.general.homebrew:
+    name: pipx
+    state: present
+  when: pipx_exists == False and ansible_os_family == "Darwin"
 
 - name: check is poetry installed
   become_user: '{{ user }}'
