@@ -55,7 +55,7 @@
   ansible.builtin.pip:
     name: pipx
 
-- name: Install pyenv macos
+- name: Install pipx macos
   become: true
   become_user: '{{ user }}'
   community.general.homebrew:
