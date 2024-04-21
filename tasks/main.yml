@@ -13,7 +13,7 @@
   register: pyenv_exists
 
 - name: Install pyenv requirements debian/like
-  when: pyenv_exists.stat.exists == False and ansible_os_family != "Darwin" and ansible_pkg_mgr == "apt"
+  when: pyenv_exists.stat.exists == False and ansible_pkg_mgr == "apt"
   apt: 
     state: present
     name: git,make,build-essential,libssl-dev,zlib1g-dev,libbz2-dev,libreadline-dev,libsqlite3-dev,wget,curl,llvm,libncursesw5-dev,xz-utils,tk-dev,libxml2-dev,libxmlsec1-dev,libffi-dev,liblzma-dev,python3-dev,python3-venv,python3-pip
@@ -66,19 +66,6 @@
   become_user: '{{ user }}'
   community.general.pipx:
     name: poetry
-
-- name: check is ansible installed
-  become_user: '{{ user }}'
-  shell: command -v ansible-playbook
-  register: ansible_exists
-  ignore_errors: true
-
-- name: Install ansible-base
-  when: ansible_exists is failed
-  become_user: '{{ user }}'
-  community.general.pipx:
-    name: ansible-base
-
 
 - name: check is commitizen installed
   become_user: '{{ user }}'
