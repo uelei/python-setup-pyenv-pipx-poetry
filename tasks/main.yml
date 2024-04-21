@@ -55,7 +55,7 @@
   ansible.builtin.pip:
     name: pipx
 
-- name: Install pipx macos
+- name: Install pipx macos 2
   become: true
   become_user: '{{ user }}'
   community.general.homebrew:
