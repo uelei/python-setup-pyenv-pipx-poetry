@@ -61,7 +61,7 @@
   community.general.homebrew:
     name: pipx
     state: present
-  when: pipx_exists == False and ansible_os_family == "Darwin"
+  when: pipx_exists.stat.exists == False and ansible_os_family == "Darwin"
 
 - name: check is poetry installed
   become_user: '{{ user }}'
