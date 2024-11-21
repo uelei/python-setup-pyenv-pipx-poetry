@@ -1,3 +1,6 @@
+The Module is deprecated after https://github.com/uelei/environment-setup-ansible/pull/4
+
+
 Role Name
 =========
 
